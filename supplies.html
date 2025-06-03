@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+
+    <title>懷舊良品</title>
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <nav class="nav-left">
+                <a href="about.html">關於我們</a>
+                <div class="dropdown">
+                    <a href="#" class="dropdown-button" onclick="toggleDropdown()">商品分類 ▼</a>
+                    <div id="dropdown-menu" class="dropdown-content">
+                      <a href="project.html">所有商品</a>
+                      <a href="food.html">古味食堂</a>
+                      <a href="drinks.html">時光飲吧</a>
+                      <a href="toys.html">童趣樂園</a>
+                      <a href="supplies.html">懷舊良品</a>
+                    </div>
+                </div>
+                
+                
+            </nav>
+          <h1 class="store-name"><a href="index .html">胖呆雜貨店</a></h1>
+          <div class="nav-right">
+            <a href="member.html">會員中心 ｜</a>
+            <a href="shoppingcart.html" class="cart">🛒 購物車</a>
+          </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- 左側商品分類 -->
+        <div class="sidebar">
+            <h3>♡°ஂ商品分類♡°ஂ</h3>
+            <ul>
+                <li><a href="project.html">全部商品</a></li>
+                <li><a href="food.html">古味食堂</a></li>
+                <li><a href="drinks.html">時光飲吧</a></li>
+                <li><a href="toys.html">童趣樂園</a></li>
+                <li><a href="supplies.html">懷舊良品</a></li>
+            </ul>
+        </div>
+
+        <!-- 右側商品區域 -->
+        <div class="content" id="project">
+            <div class="content-header">
+                <span><b>懷舊良品</b></span>
+                <select id="sortSelect" onchange="sortProducts()">
+                    <option value="default">預設排序</option>
+                    <option value="priceAsc">價格：低到高</option>
+                    <option value="priceDesc">價格：高到低</option>
+                </select>
+            </div>
+
+            <div class="product-list">
+<!--懷舊良品-->
+                <!-- 一條根 -->
+                <div class="product-item" data-id="supplies1">
+                    <div class="product-image">
+                        <img src="image/supplies/RootOfMoghania.PNG">
+                        <div class="hover-buttons">
+                            <button onclick="addToCart('一條根')">加入購物車</button>
+                            <button onclick="addToFavorites('一條根')">收藏</button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <span class="product-name">一條根</span>
+                        <span class="product-price">NT$ 65</span>
+                    </div>
+                </div>
+                
+                <!-- 不求人 -->
+                <div class="product-item" data-id="supplies2">
+                    <div class="product-image">
+                        <img src="image/supplies/scratch.PNG"  >
+                        <div class="hover-buttons">
+                            <button onclick="addToCart('不求人')">加入購物車</button>
+                            <button onclick="addToFavorites('不求人')">收藏</button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <span class="product-name">不求人</span>
+                        <span class="product-price">NT$ 30</span>
+                    </div>
+                </div>
+
+                <!--刮痧板-->
+                <div class="product-item" data-id="supplies3">
+                    <div class="product-image">
+                        <img src="image/supplies/SxrapingBoard.PNG" >
+                        <div class="hover-buttons">
+                            <button onclick="addToCart('刮痧板')">加入購物車</button>
+                            <button onclick="addToFavorites('刮痧板')">收藏</button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <span class="product-name">刮痧板</span>
+                        <span class="product-price">NT$ 37</span>
+                    </div>
+                </div>
+
+                <!--花露水-->
+                <div class="product-item" data-id="supplies4">
+                    <div class="product-image">
+                        <img src="image/supplies/FloridaWater.PNG" >
+                        <div class="hover-buttons">
+                            <button onclick="addToCart('花露水')">加入購物車</button>
+                            <button onclick="addToFavorites('花露水')">收藏</button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <span class="product-name">花露水</span>
+                        <span class="product-price">NT$ 55</span>
+                    </div>
+                </div>
+
+                <!--腳底按摩器-->
+                <div class="product-item" data-id="supplies5">
+                    <div class="product-image">
+                        <img src="image/supplies/FootMassager.PNG" >
+                        <div class="hover-buttons">
+                            <button onclick="addToCart('腳底按摩器')">加入購物車</button>
+                            <button onclick="addToFavorites('腳底按摩器')">收藏</button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <span class="product-name">腳底按摩器</span>
+                        <span class="product-price">NT$ 150</span>
+                    </div>
+                </div>
+
+                <!-- 雞毛撢子 -->
+                <div class="product-item" data-id="supplies6">
+                    <div class="product-image">
+                        <img src="image/supplies/FeatherDust.PNG">
+                        <div class="hover-buttons">
+                            <button onclick="addToCart('雞毛撢子')">加入購物車</button>
+                            <button onclick="addToFavorites('雞毛撢子')">收藏</button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <span class="product-name">雞毛撢子 </span>
+                        <span class="product-price">NT$ 89</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-item">
+                <img src="image/photo13.jpg" height="100px" width="150px">
+                <div class="text-container">
+                    <p>𖥠 中原大學資管系</p>
+                    <p>☼ 全日公休（食物被代言人吃完 補貨中~_~）</p>
+                    <p>☏ 0959277777(我就愛吃吃吃吃吃)</p>
+                    <p>✉ pdhjzhd@gmail.com</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>@2024 胖呆懷舊雜貨店</p>
+        </div>
+    </footer>
+    <button class="back-to-top" onclick="scrollToTop()">↑</button>
+    <script src="js/script.js"></script>
+    <script>
+        // 點擊商品跳轉到對應的介紹頁
+        document.querySelector('.product-list').addEventListener('click', (event) => {
+            const target = event.target.closest('.product-item');
+            if (target) {
+                const productId = target.getAttribute('data-id');
+                // 跳轉到商品介紹頁，並攜帶商品 ID
+                window.location.href = `product-detail.html?id=${productId}`;
+            }
+        });
+    </script>
+</body>
+</html>

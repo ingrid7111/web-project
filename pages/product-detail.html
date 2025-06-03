@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商品介紹</title>
+    <link rel="stylesheet" href="css/product-detail.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+          <nav class="nav-left">
+            <a href="about.html">關於我們</a>
+            <a href="news.html">最新消息</a>
+            <div class="dropdown">
+              <a href="#" class="dropdown-button" onclick="toggleDropdown()">商品分類 ▼</a>
+              <div id="dropdown-menu" class="dropdown-content">
+                <a href="food.html">古味食堂</a>
+                <a href="drinks.html">時光飲吧</a>
+                <a href="toys.html">童趣樂園</a>
+                <a href="supplies.html">懷舊良品</a>
+              </div>
+            </div>
+            
+            <a href="contact.html">聯絡我們</a>
+          </nav>
+          <h1 class="store-name">胖呆雜貨店</h1>
+
+          <div class="nav-right">
+            <a href="member.html">
+                登入/註冊 |
+            </a>
+            <a href="cart.html">
+                🛒 
+                <span id="cart-count" style=" color: white; border-radius: 50%; font-size: 15px;">0</span>
+            </a>
+            <a href="collect.html">
+                <button id="wishlist-btn" style="background: none; border: none; font-size: 28px; cursor: pointer;">
+                    <span id="heart-icon" style="color: white;">&#9825;</span>
+                </button>
+            </a>
+            <span id="wishlist-count" style="color: white; border-radius: 50%; font-size: 13px;">0</span>
+
+
+          </div>
+        </div>
+    </header>
+
+
+    <main class="product-detail">
+        <section class="product-image">
+            <img id="detailImage" src="image/drink/1.JPG" alt="商品圖片"> 
+        </section>
+        <section class="product-info">
+            <div class="product-header">
+                <h1 id="detailName">香茅精油防護擴香液</h1>
+                <!-- 分享器 -->
+                <img src="image/icons8-share-30.png" alt="分享器" class="share-icon" id="share-icon">
+                <div class="share-options" id="share-options">
+                    <a href="https://line.me/R/share" >
+                        <img src="image/social/line.png" alt="LINE" class="social-icon">
+                    </a>
+                    <a href="https://www.instagram.com" >
+                        <img src="image/social/ig.png" alt="Instagram" class="social-icon">
+                    </a>
+                    <a href="https://www.facebook.com" target="blank">
+                        <img src="image/social/fb.png" alt="Facebook" class="social-icon">
+                    </a>
+                </div>
+            </div>
+
+            <p class="price">
+                <span id="detailPrice">NT$200</span>
+                <span class="original-price">NT$300</span>
+            </p>
+
+            <p>容量：<span id="detailVolume">8ML</span></p>
+            <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                <label for="quantity">數量：</label>
+                <select id="quantity" style="padding: 5px; font-size: 14px;width: 620px;">
+                    <!-- 下拉選單，數字1到10 -->
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+            <p>商品資訊 : <span id="detailDescription">搭配優雅香氛</span></p>
+            <p class="stock-info">超過庫存訂購此商品需要 8 個工作天。</p>
+          
+            
+            <div style="display: flex; align-items: center; margin-top: 20px;">
+                <!-- 購物車按鈕 -->
+                <button id="add-to-cart" style="flex: 1; background-color: #5a4634; color: white; border: none; padding: 10px; font-size: 16px; cursor: pointer;">
+                    加入購物車
+                </button>
+
+                <!-- 收藏按鈕 -->
+                <button id="product-wishlist-btn" style="background: none; border: none; font-size: 30px; cursor: pointer;">
+                    <span id="product-heart-icon" style="color: #ccc; font-size: 30px;">&#9825;</span>
+                </button>
+                
+            </div>
+
+            <div id="custom-alert" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+                background: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); padding: 20px; z-index: 1000;">
+                <p id="alert-message" style="margin: 0; font-size: 16px; color: #333;">商品已加入購物車！</p>
+                <div style="text-align: center; margin-top: 20px;">
+                    <button id="close-alert" style="margin-top: 15px; background: #5a4634; color: white; border: none; 
+                    padding: 10px 20px; cursor: pointer; border-radius: 5px;">確定</button>
+                </div>
+            </div>
+            <div id="overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 999;"></div>
+        </section>
+       
+    </main>
+    <footer>
+        <div class="footer-container">
+          <div class="footer-item">
+            <img src="image/photo13.jpg" height="100px" width="150px">
+            <div class="text-container">
+              <p>𖥠 中原大學資管系</p>
+              <p>☼ 全日公休（食物被代言人吃完 補貨中~_~）</p>
+              <p>☏ 0959277777(我就愛吃吃吃吃吃)</p>
+              <p>✉ pdhjzhd@gmail.com</p>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>@2024 胖呆懷舊雜貨店</p>
+        </div>
+      </footer>
+    <script src="js/product-detail.js"></script>
+</body>
+</html>

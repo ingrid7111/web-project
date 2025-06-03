@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>胖呆懷舊雜貨店</title>
+  <link rel="stylesheet" href="css/test.css">
+  <link rel="stylesheet" href="css/member-2ver.css">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+          <nav class="nav-left">
+            <a href="about.html">關於我們</a>
+            <div class="dropdown">
+                <a href="#" class="dropdown-button" onclick="toggleDropdown()">商品分類 ▼</a>
+                <div id="dropdown-menu" class="dropdown-content">
+                  <a href="project.html">所有商品</a>
+                  <a href="food.html">古味食堂</a>
+                  <a href="drinks.html">時光飲吧</a>
+                  <a href="toys.html">童趣樂園</a>
+                  <a href="supplies.html">懷舊良品</a>
+                </div>
+            </div>
+         </nav>
+         
+          <h1 class="store-name"><a href="index .html">胖呆雜貨店</a></h1>
+          <div class="nav-right">
+          
+            <!-- 會員中心 -->
+            <a href="#" id="member-center" onclick="openLoginWindow()">會員中心 ｜</a>
+
+            <!-- 登入視窗 -->
+            <div id="login-modal" class="modal">
+              <div class="modal-content">
+                <span class="close" onclick="closeLoginWindow()">&times;</span>
+                <h2>登入會員</h2>
+                <form id="login-form">
+                  <label for="username">帳號:</label>
+                  <input type="text" id="username" name="username" required><br>
+                  <label for="password">密碼:</label>
+                  <input type="password" id="password" name="password" required><br>
+                  <button type="submit">登入</button>
+                </form>
+                <p id="error-message" style="color: red; display: none;">帳號或密碼錯誤！</p>
+              </div>
+            </div>
+
+
+            <a href="shoppingcart.html" class="cart">🛒 購物車</a>
+          </div>
+        </div>
+    </header>
+      
+
+    <main>
+  
+          <!-- 首頁 Banner -->
+        <div class="slideshow-container">
+          <div class="mySlides fade">
+            <a href="project.html"><img src="image/photo7.jpg" width="100%" height="100%"></a>
+          </div>
+      
+          <div class="mySlides fade">
+            <a href="project.html"><img src="image/photo8.jpg" width="100%" height="100%"></a>
+          </div>
+      
+          <div class="mySlides fade">
+            <a href="project.html"><img src="image/photo9.jpg" width="100%" height="100%"></a>
+          </div>
+      
+          <!--左右按鈕-->
+          <div class="pre" onclick="plusSlides(-1)">❮</div>
+          <div class="next" onclick="plusSlides(1)">❯</div>
+      
+        </div>
+    
+        <!--顯示圓點-->
+        <div style="text-align: center;">
+          <span class="dot" onclick="currentSlide(0)"></span>
+          <span class="dot" onclick="currentSlide(1)"></span>
+          <span class="dot" onclick="currentSlide(2)"></span>
+        </div>
+    
+
+        <!-- 商品列表 -->
+        <section class="products" id="favorite-products">
+          <h3 class="section-title">胖呆最愛</h3>
+          <div class="product-list">
+            <div class="product-wrapper">
+              <div class="product-pre" onclick="moveSlide('left','favorite')">❮</div>
+              <div class="product-container" id="favorite">
+                <article class="product-item" data-id="food2">
+                  <h4>˚ʚ♡ɞ˚口紅糖˚ʚ♡ɞ˚</h4>
+                  <div class="product-img">
+                    <img src="image/food/lipstick.png" width="260px" height="200px">
+                  </div>
+                </article>
+                <article class="product-item" data-id="drinks1">
+                  <h4>˚ʚ♡ɞ˚蜜豆奶˚ʚ♡ɞ˚</h4>
+                  <div class="product-img">
+                    <img src="image/drinks/soymilk.png" width="260px" height="200px">
+                  </div>
+                </article>
+                <article class="product-item" data-id="toys1">
+                  <h4>˚ʚ♡ɞ˚太空氣球˚ʚ♡ɞ˚</h4>
+                  <div class="product-img">
+                    <img src="image/toys/SpaceBalloon.PNG" width="260px" height="200px">
+                  </div>
+                </article>
+                <article class="product-item" data-id="food1">
+                  <h4>˚ʚ♡ɞ˚飛機餅乾˚ʚ♡ɞ˚</h4>
+                  <div class="product-img">
+                    <img src="image/food/AirplaneBiscuits.png" width="260px" height="200px">
+                  </div>
+                </article>
+              </div>
+              <div class="product-next" onclick="moveSlide('right','favorite')">❯</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 商品列表(2) -->
+        <section class="products" id="hot-products">
+          <h3 class="section-title">近期熱銷</h3>
+          <div class="product-list">
+            <div class="product-wrapper">
+              <div class="product-pre" onclick="moveSlide('left','hot')">❮</div>
+              <div class="product-container" id="hot">
+                <article class="product-item" data-id="food3">
+                  <h4>˚ʚ♡ɞ˚巧克力風味醬</h4>
+                  <div class="product-img">
+                    <img src="image/food/chocolate.png" width="260px" height="200px">
+                  </div>
+                </article>
+                <article class="product-item" data-id="drinks4">
+                  <h4>˚ʚ♡ɞ˚彈珠汽水˚ʚ♡ɞ˚</h4>
+                  <div class="product-img">
+                    <img src="image/drinks/MarbleSoda.PNG" width="260px" height="200px">
+                  </div>
+                </article>
+                <article class="product-item" data-id="supplies5">
+                  <h4>˚ʚ♡ɞ˚腳底按摩器˚ʚ♡ɞ˚</h4>
+                  <div class="product-img">
+                    <img src="image/supplies/FootMassager.PNG" width="260px" height="200px">
+                  </div>
+                </article>
+                <article class="product-item" data-id="toys4">
+                  <h4>˚ʚ♡ɞ˚紅包抽抽樂˚ʚ♡ɞ˚</h4>
+                  <div class="product-img">
+                    <img src="image/toys/draw.PNG" width="260px" height="200px">
+                  </div>
+                </article>
+              </div>
+              <div class="product-next" onclick="moveSlide('right','hot')">❯</div>
+            </div>
+          </div>
+        </section>
+
+        <footer>
+          <div class="footer-container">
+            <div class="footer-item">
+              <img src="image/photo13.jpg" height="100px" width="150px">
+              <div class="text-container">
+                <p>𖥠 中原大學資管系</p>
+                <p>☼ 全日公休（食物被代言人吃完 補貨中~_~）</p>
+                <p>☏ 0959277777(我就愛吃吃吃吃吃)</p>
+                <p>✉ pdhjzhd@gmail.com</p>
+              </div>
+            </div>
+          </div>
+          <div class="footer-bottom">
+            <p>@2024 胖呆懷舊雜貨店</p>
+          </div>
+        </footer>
+    </main>
+    <script src="js/test.js"></script>
+    <script src="js/member-2ver.js"></script>
+    <script>
+
+      document.querySelectorAll('.product-item').forEach((item) => {
+        item.addEventListener('click', () => {
+         const productId = item.getAttribute('data-id');
+         // 跳轉到商品介紹頁，並攜帶商品 ID
+         window.location.href = `product-detail.html?id=${productId}`;
+        });
+      });
+  </script>
+ 
+
+</body>
+</html>

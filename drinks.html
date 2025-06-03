@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>時光飲吧</title>
+    <link rel="stylesheet" href="css/style.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+          <nav class="nav-left">
+            <a href="about.html">關於我們</a>
+            
+            <div class="dropdown">
+              <a href="#" class="dropdown-button" onclick="toggleDropdown()">商品分類 ▼</a>
+              <div id="dropdown-menu" class="dropdown-content">
+                <a href="project.html">所有商品</a>
+                <a href="food.html">古味食堂</a>
+                <a href="drinks.html">時光飲吧</a>
+                <a href="toys.html">童趣樂園</a>
+                <a href="supplies.html">懷舊良品</a>
+              </div>
+            </div>
+            
+            
+          </nav>
+          <h1 class="store-name"><a href="index .html">胖呆雜貨店</a></h1>
+          <div class="nav-right">
+            <a href="member.html">會員中心 ｜</a>
+            <a href="shoppingcart.html" class="cart">🛒 購物車</a>
+          </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- 左側商品分類 -->
+        <div class="sidebar">
+            <h3>♡°ஂ商品分類♡°ஂ</h3>
+            <ul>
+                <li><a href="project.html">全部商品</a></li>
+                <li><a href="food.html">古味食堂</a></li>
+                <li><a href="drinks.html">時光飲吧</a></li>
+                <li><a href="toys.html">童趣樂園</a></li>
+                <li><a href="supplies.html">懷舊良品</a></li>
+            </ul>
+        </div>
+
+        <!-- 右側商品區域 -->
+        <div class="content" id="project">
+            <div class="content-header">
+                <span><b>時光飲吧</b></span>
+                <select id="sortSelect" onchange="sortProducts()">
+                    <option value="default">預設排序</option>
+                    <option value="priceAsc">價格：低到高</option>
+                    <option value="priceDesc">價格：高到低</option>
+                </select>
+            </div>
+
+            <div class="product-list">
+                <!--時光飲吧-->
+                <!-- 蜜豆奶 -->
+                <div class="product-item"  data-id="drinks1">
+                    <div class="product-image">
+                        <img src="image/drinks/soymilk.png">
+                        <div class="hover-buttons">
+                            <button onclick="addToCart('蜜豆奶')">加入購物車</button>
+                            <button onclick="addToFavorites('蜜豆奶')">收藏</button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <span class="product-name">蜜豆奶</span>
+                        <span class="product-price">NT$ 13</span>
+                    </div>
+                </div>
+                
+                <!-- 冬瓜茶 -->
+                <div class="product-item" data-id="drinks2">
+                    <div class="product-image">
+                        <img src="image/drinks/WhiteGourdTea.png" >
+                        <div class="hover-buttons">
+                            <button onclick="addToCart('冬瓜茶')">加入購物車</button>
+                            <button onclick="addToFavorites('冬瓜茶')">收藏</button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <span class="product-name">冬瓜茶</span>
+                        <span class="product-price">NT$ 25</span>
+                    </div>
+                </div>
+
+                <!--QOO果凍飲料-->
+                <div class="product-item"  data-id="drinks3">
+                    <div class="product-image">
+                        <img src="image/drinks/QOO.png" >
+                        <div class="hover-buttons">
+                            <button onclick="addToCart('QOO果凍飲料')">加入購物車</button>
+                            <button onclick="addToFavorites('QOO果凍飲料')">收藏</button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <span class="product-name">QOO果凍飲料</span>
+                        <span class="product-price">NT$ 30</span>
+                    </div>
+                </div>
+
+                <!--彈珠汽水-->
+                <div class="product-item" data-id="drinks4">
+                    <div class="product-image"  >
+                        <img src="image/drinks/MarbleSoda.PNG" >
+                        <div class="hover-buttons">
+                            <button onclick="addToCart('彈珠汽水')">加入購物車</button>
+                            <button onclick="addToFavorites('彈珠汽水')">收藏</button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <span class="product-name">彈珠汽水</span>
+                        <span class="product-price">NT$ 35</span>
+                    </div>
+                </div>
+
+                <!--津津蘆筍汁-->
+                <div class="product-item"  data-id="drinks5">
+                    <div class="product-image">
+                        <img src="image/drinks/AsparagusJuice.png" >
+                        <div class="hover-buttons">
+                            <button onclick="addToCart('津津蘆筍汁')">加入購物車</button>
+                            <button onclick="addToFavorites('津津蘆筍汁')">收藏</button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <span class="product-name">津津蘆筍汁</span>
+                        <span class="product-price">NT$ 30</span>
+                    </div>
+                </div>
+
+                <!-- 冰淇淋汽水 -->
+                <div class="product-item"  data-id="drinks6">
+                    <div class="product-image">
+                        <img src="image/drinks/IceCreamSoda.png">
+                        <div class="hover-buttons">
+                            <button onclick="addToCart('冰淇淋汽水')">加入購物車</button>
+                            <button onclick="addToFavorites('冰淇淋汽水')">收藏</button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <span class="product-name">冰淇淋汽水</span>
+                        <span class="product-price">NT$ 39</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-item">
+                <img src="image/photo13.jpg" height="100px" width="150px">
+                <div class="text-container">
+                    <p>𖥠 中原大學資管系</p>
+                    <p>☼ 全日公休（食物被代言人吃完 補貨中~_~）</p>
+                    <p>☏ 0959277777(我就愛吃吃吃吃吃)</p>
+                    <p>✉ pdhjzhd@gmail.com</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>@2024 胖呆懷舊雜貨店</p>
+        </div>
+    </footer>
+    <button class="back-to-top" onclick="scrollToTop()">↑</button>
+    <script src="js/script.js"></script>
+    <script>
+        // 點擊商品跳轉到對應的介紹頁
+        document.querySelector('.product-list').addEventListener('click', (event) => {
+            const target = event.target.closest('.product-item');
+            if (target) {
+                const productId = target.getAttribute('data-id');
+                // 跳轉到商品介紹頁，並攜帶商品 ID
+                window.location.href = `product-detail.html?id=${productId}`;
+            }
+        });
+    </script>
+</body>
+</html>

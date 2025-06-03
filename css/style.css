@@ -1,0 +1,564 @@
+/* 全局樣式 */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-image: url("../image/photo10.jpg");
+    background-size:cover;
+    background-position: center center;
+    background-attachment: fixed;
+    color: #333;
+    text-align: center;
+}
+
+  
+/* Header 樣式 */
+header {
+  background-color: #a54427;
+  color: green;
+  padding: 2rem 0;
+  height: 100px;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  padding: 0 3rem;
+  color: #42563b;
+  font-family: "微軟正黑體";
+  font-weight: 400;
+  font-weight: bold;
+  font-style: normal;
+}
+
+
+.nav-left, .nav-right{
+  display: flex;
+  align-items: center;
+}
+
+.nav-right{
+  justify-content: flex-start;
+}
+
+.nav-left a, .nav-right a{
+  color: white;
+  text-decoration: none;
+  margin: 0 1rem;
+  font-size: 1.2rem;
+}
+
+.store-name {
+  font-size: 3rem;
+  margin: 0;
+  font-family:"Dela Gothic One", serif;
+  font-weight: 400;
+  font-style: normal;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+
+.store-name a{
+  color: white; /* 修改為你想要的顏色，例如黑色可以用 #000 或 black */
+  text-decoration: none; /* 去掉底線（可選） */
+}
+
+.store-name:hover{
+  color: white;
+}
+
+  /* 下拉選單容器 */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* 隱藏的下拉內容 */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  font-family: "微軟正黑體";
+}
+/* 下拉選項的樣式 */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+/* 顯示下拉內容 */
+.show {
+  display: block;
+}
+ 
+.nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 1rem;
+}
+
+.member a {
+  color: white;
+  margin-left: 1rem;
+  text-decoration: none;
+}
+  
+/* Banner 樣式 */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0px;
+}
+
+.slideshow-container {
+  max-width: 95%;
+  position: relative;
+  margin: 30px auto 0 auto;
+  height: 600px;
+}
+
+.mySlides img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/*按鍵設計*/
+.pre,
+.next {
+  position: absolute;
+  top: 50%;
+  padding: 20px;
+  width: auto;
+  color: white;
+  font-weight: bold;
+  font-size: 30px;
+  transition: 0.6s ease;
+}
+
+.next {
+  right: 0px;
+}
+
+/*滑鼠在按鈕上並改變顏色*/
+.pre:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.764);
+}
+
+/*照片動畫*/
+.mySlides {
+  animation: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0.4;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/*圓點*/
+.dot {
+  position: relative;
+  height: 10px;
+  width: 10px;
+  margin: 0px 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.dot:hover,
+.active {
+  background-color: #717171;
+}
+
+/* 商品列表 */
+.products {
+  padding: 2rem;
+}
+
+.section-title {
+  font-size: 3.5rem;
+  font-family:"Dela Gothic One", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.product-wrapper{
+  position: relative;
+  width: 1000px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.product-container{
+  display: flex;
+  gap: 20px;
+  transition: transform 0.5s ease;
+  width: calc(260px*3+20px*2);
+}
+
+.product-pre, .product-next{
+  position: absolute;
+  top: 50%;
+  padding: 20px;
+  width: auto;
+  color: white;
+  font-weight: bold;
+  font-size: 30px;
+  transition: 0.6 ease;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.product-pre{
+  left: 0;
+}
+
+.product-next{
+  right: 0;
+}
+
+.product-pre:hover, .product-next:hover{
+  background-color: rgba(0,0,0,0.764);
+}
+
+.product-img {
+  background-color: #eee;
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+}
+
+
+.btn-buy, .btn-collect {
+  background-color: #a54427;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+
+/* 關於我們頁面的樣式 */
+
+.about-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-family: 'Dela Gothic One', cursive;
+  color: #6a4e23;
+  margin-bottom: 20px;
+}
+
+.about-content {
+  margin-bottom: 40px;
+  text-align: justify;
+  line-height: 1.6;
+  width: 80%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.about-content p {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  text-align: center;
+  font-family: "Sawarabi Mincho", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px 0;
+  width: 100%;
+}
+
+.about-image {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer 整體樣式 */
+footer {
+    background-color: #a54427; /* Footer 背景顏色 */
+    padding: 20px; /* Footer 整體的內邊距 */
+  }
+  
+  /* Footer 主要內容容器 */
+  .footer-container {
+    display: flex; /* 使用 Flex 排版 */
+    align-items: center; /* 垂直居中對齊 */
+    justify-content: center; /* 水平居中 */
+    margin-bottom: 10px; /* 與底部部分的間距 */
+    position: relative; /* 確保定位有效 */
+  }
+  
+  /* Footer 圖片樣式 */
+  .footer-item img {
+    max-width: 100px; /* 圖片最大寬度 */
+    height: auto; /* 確保圖片等比例縮放 */
+    position: absolute; /* 絕對定位讓圖片保持靠左 */
+    left: 20px; /* 與左邊距離 */
+    top: 50%; /* 垂直置中 */
+    transform: translateY(-50%); /* 修正垂直居中的偏移 */
+  }
+  
+  /* Footer 文字容器 */
+  .footer-item .text-container {
+    margin-left: 150px; /* 為了讓文字不被圖片覆蓋，增加左邊距 */
+    text-align: left; /* 文字靠左對齊 */
+    line-height: 1.6; /* 行間距 */
+    max-width: 600px; /* 限制文字容器的最大寬度 */
+  }
+  
+  /* Footer 文字樣式 */
+  .footer-item .text-container p {
+    margin: 5px 0; /* 每段文字的上下間距 */
+    font-size: 14px; /* 文字大小 */
+    color: #333; /* 文字顏色 */
+  }
+  
+  /* Footer 底部獨立部分 */
+  .footer-bottom {
+    background-color:#42563b; /* 底部背景顏色 */
+    text-align: center; /* 內容水平置中 */
+    padding: 10px 0; /* 上下內邊距 */
+    margin-top: 10px; /* 與上方內容的間距 */
+  }
+  
+  .footer-bottom p {
+    margin: 0; /* 移除多餘外邊距 */
+    font-size: 14px; /* 文字大小 */
+    font-weight: bold; /* 字體加粗 */
+    color: #000; /* 文字顏色 */
+  }
+
+/* 主容器 */
+.container {
+    display: flex;
+    padding: 20px;
+    gap: 20px;
+}
+
+/* 左側分類欄 */
+.sidebar {
+    width: 20%;
+    padding: 10px;
+    overflow-y: auto; /* 若分類過多，支援滾動 */
+}
+
+.sidebar h3 {
+    font-size: 25px;
+    font-weight: bold;
+    color: #ae4516;
+    margin-bottom: 10px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 10px 0;
+    padding: 5px 10px;
+    /*border-bottom: 1px solid #ddd;*/
+}
+
+.sidebar ul li:hover {
+    background-color: #fff;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #42563b;
+    font-size: 20px;
+}
+
+.sidebar ul li a:hover {
+    color: #ae4516;
+}
+
+/* 右側商品區域 */
+.content {
+    width: 75%;
+}
+
+.content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.content-header span{
+    font-size: 20px;
+    font-weight: bold;
+    color: #42563b;
+}
+
+.content-header select {
+    padding: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* 商品列表 */
+.product-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 每列 3 個商品 */
+    gap: 20px;
+    justify-items: center; /* 水平置中 */
+}
+
+
+/* 單一商品卡 */
+.product-item {
+    width: 200px;
+    text-align: center;
+    position: relative;
+}
+
+/* 商品圖片容器 */
+.product-image {
+    position: relative;
+}
+
+.product-image img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+/* 懸浮按鈕 */
+.hover-buttons {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 5px;
+}
+
+.hover-buttons button {
+    background-color: #ae4516;
+    color: #f0cba1;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.hover-buttons button:hover {
+    background-color: #42563b;
+    color: #f0cba1;
+    font-weight: bolder;
+}
+
+.product-image:hover .hover-buttons {
+    opacity: 1;
+}
+
+/* 商品資訊 */
+.product-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product-name {
+    font-size: 14px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.product-price {
+    font-size: 14px;
+    color: #ae4516;
+    text-align: right;
+}
+
+/* 回到頂端按鈕 */
+.back-to-top {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    display: grid; 
+    background-color: #8B4513;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    font-size: 16px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.back-to-top:hover {
+    background-color: #5a2d0c;
+}
+
+
+/* 手機版適配，螢幕寬度小於等於 768px 時生效 */
+@media only screen and (max-width: 768px) {
+  .container {
+    width: 100%;  /* 讓內容區域寬度適應手機屏幕 */
+    padding: 10px;  /* 減少邊距 */
+  }
+
+  .header h1 {
+    font-size: 24px;  /* 減小字體 */
+  }
+
+  .main-content {
+    font-size: 16px;  /* 可根據需要調整字體大小 */
+    padding: 10px;    /* 減少內部間距 */
+  }
+
+  .footer {
+    font-size: 14px;  /* 減小腳本文字大小 */
+  }
+}

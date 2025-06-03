@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+
+    <title>收藏清單</title>
+    <link rel="stylesheet" href="css/collect.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap" rel="stylesheet">
+  
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=swap" rel="stylesheet">
+    
+  </head>
+  <body>
+      <header>
+          <div class="header-container">
+            <nav class="nav-left">
+              <a href="about.html">關於我們</a>
+              <div class="dropdown">
+                  <a href="#" class="dropdown-button" onclick="toggleDropdown()">商品分類 ▼</a>
+                  <div id="dropdown-menu" class="dropdown-content">
+                    <a href="project.html">所有商品</a>
+                    <a href="food.html">古味食堂</a>
+                    <a href="drinks.html">時光飲吧</a>
+                    <a href="toys.html">童趣樂園</a>
+                    <a href="supplies.html">懷舊良品</a>
+                  </div>
+              </div>
+           </nav>
+           
+            <h1 class="store-name"><a href="index .html">胖呆雜貨店</a></h1>
+            <div class="nav-right">
+              <a href="member.html">會員中心 ｜</a>
+              <a href="shoppingcart.html" class="cart">🛒 購物車</a>
+            </div>
+          </div>
+      </header>
+ 
+    <main>
+        <h2>我的收藏清單</h2>
+        <div id="wishlist-items" class="wishlist-container">
+            <!-- 動態生成商品 -->
+        </div>
+    </main>
+    <footer>
+      <div class="footer-container">
+        <div class="footer-item">
+          <img src="image/photo13.jpg" height="100px" width="150px">
+          <div class="text-container">
+            <p>𖥠 中原大學資管系</p>
+            <p>☼ 全日公休（食物被代言人吃完 補貨中~_~）</p>
+            <p>☏ 0959277777(我就愛吃吃吃吃吃)</p>
+            <p>✉ pdhjzhd@gmail.com</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>@2024 胖呆懷舊雜貨店</p>
+      </div>
+    </footer>
+    <script src="js/collect.js"></script>
+</body>
+</html>
