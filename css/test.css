@@ -73,6 +73,15 @@ header {
   display: inline-block;
 }
 
+/* 會員中心按鈕樣式 */
+.dropdown-button {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 10px;
+  font-family: "微軟正黑體";
+}
+
 /* 隱藏的下拉內容 */
 .dropdown-content {
   display: none;
@@ -80,36 +89,30 @@ header {
   background-color: #f9f9f9;
   min-width: 160px;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-  z-index: 1;
+  z-index: 999;
   font-family: "微軟正黑體";
+  border-radius: 6px;
 }
 
 /* 下拉選項的樣式 */
 .dropdown-content a {
-  color: black;
+  color: #333;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
+  transition: background-color 0.3s ease;
 }
 
+/* 滑鼠懸停樣式 */
 .dropdown-content a:hover {
   background-color: #f1f1f1;
 }
 
-/* 當選單顯示時的樣式 */
-.dropdown-content.show {
+/* 滑過 dropdown 顯示選單 */
+.dropdown:hover .dropdown-content {
   display: block;
 }
 
-/* 當滑鼠懸停時改變背景顏色 */
-.dropdown-content a:hover {
-  background-color: #f1f1f1;
-}
-
-/* 顯示下拉內容 */
-.show {
-  display: block;
-}
  
 .nav a {
   color: white;
@@ -428,20 +431,15 @@ footer {
 }
 
 
-
-
-
-
 .aboutContainer{
   display: flex;
-  flex-wrap: wrap; 
+  flex-wrap: nowrap; 
   justify-content: center; 
   gap: 10px; 
   padding: 20px;
   margin: 50px;
   border-radius: 20px;
-  width: 100% auto;
-  
+  width: auto;
 }
 
 
@@ -460,6 +458,8 @@ footer {
   position: relative;
 }
 
+
+
 .font,
 .back {
   width: 100%;
@@ -471,7 +471,7 @@ footer {
   text-align: center;
   font-size: 1rem;
   color: #fff;
-  padding: 2rem;
+  padding: 10px;
   box-sizing: border-box;
   transition: all 0.5s ease-in-out;
   backface-visibility: hidden;
@@ -550,4 +550,129 @@ backdrop-filter: blur(20px);
   .footer {
     font-size: 14px;  /* 減小腳本文字大小 */
   }
+}
+
+.marquee {
+  background-color: rgba(211, 255, 223, 0.4); /* 使用 rgba 加透明度 */
+  width: 100%;
+  overflow: hidden;
+  color: #727745;
+  font-size: 1.1rem; /* 字體稍微縮小 */
+  padding: 4px 0;     /* 上下內距變小 */
+  font-weight: bold;
+  white-space: nowrap;
+  height: 50px;       /* 明確設定高度 */
+  line-height: 10px;  /* 垂直置中文字 */
+}
+
+.marquee p {
+  display: inline-block;
+  min-width: 50%;
+  animation: scroll-left 10s linear infinite;
+}
+@keyframes scroll-left {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.ad-section {
+  text-align: center;
+}
+
+.ad-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ad-image {
+  max-width: 80%;
+  max-height: 300px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.ad-image:hover {
+  transform: scale(1.05);
+}
+
+/* 📦 彈出式廣告遮罩 */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* 半透明背景 */
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 🎁 廣告框樣式 */
+.popup-ad {
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  position: relative;
+  max-width: 90%;
+  width: 400px;  /* 固定寬度 */
+}
+
+/* 🖼️ 廣告圖片樣式 */
+.popup-ad img {
+  width: 100%;
+  height: auto; /* 維持比例 */
+  border-radius: 8px;
+}
+
+/* ❌ 關閉按鈕 */
+.close-btn {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color: white;
+  color: #333;
+  font-size: 24px;
+  font-weight: bold;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  padding: 0 10px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* 廣告文字區塊 */
+.popup-img-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+#popup-ad-img {
+  width: 100%;
+  border-radius: 10px;
+  display: block;
+}
+
+.popup-ad-text {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(251, 30, 30, 0.544);
+  padding: 5px 20px;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #f7f7f7;
+  font-weight: bold;
+  font-family: "微軟正黑體";
+  white-space: nowrap;
 }

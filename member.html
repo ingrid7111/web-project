@@ -36,11 +36,11 @@
             
             
           </nav>
-          <h1 class="store-name"><a href="index .html">胖呆雜貨店</a></h1>
-          <div class="nav-right">
-            <a href=#>黃胖呆，您好 ｜</a>
-            <a href="shoppingcart.html" class="cart">🛒 購物車</a>
-          </div>
+          <h1 class="store-name"><a href="index.jsp">胖呆雜貨店</a></h1>
+            <div class="nav-right">
+             <a id="member-greeting">會員中心 ｜</a>
+             <a href="shoppingcart.html" class="cart">🛒 購物車</a>
+            </div>
         </div>
     </header>
 
@@ -112,10 +112,10 @@
               <span class="review-date">2024/12/30</span>
             </div>
           </div>
-          
         </section>
       </div>
-    </main>
+  </main>
+
     <footer>
       <div class="footer-container">
         <div class="footer-item">
@@ -135,5 +135,25 @@
     <script src="js/member_center.js"></script>
     <script src="js/test.js"></script>
     <script src="js/product-detail.js"></script>
+<script>
+  const currentUser = localStorage.getItem("current_user");
+
+  if (currentUser) {
+    const greeting = document.getElementById("member-greeting");
+    if (greeting) {
+      greeting.textContent = `${currentUser}，您好｜`;
+    }
+
+    const benefits = document.getElementById("member-benefits");
+    if (benefits) {
+      benefits.style.display = "block";
+    }
+  } else {
+    // 如果沒登入跳轉回首頁或提醒
+    alert("請先登入會員！");
+    window.location.href = "index.html";
+  }
+</script>
+
 </body>
 </html>

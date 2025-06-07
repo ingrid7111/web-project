@@ -1,69 +1,108 @@
-/* 視窗樣式 */
+/* ======= 會員功能共用樣式 ======= */
+
+/* 會員下拉選單 */
+.member-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.member-dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  font-family: "微軟正黑體";
+}
+
+.member-dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.member-dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.member-dropdown-content.show {
+  display: block;
+}
+
+/* ======= 彈出視窗樣式（登入 / 註冊）======= */
+
 .modal {
-    display: none; 
-    position: fixed; 
-    z-index: 1; 
-    left: 0;
-    top: 0;
-    width: 100%; 
-    height: 100%; 
-    overflow: auto; 
-    background-color: rgb(0,0,0); 
-    background-color: rgba(0,0,0,0.4); 
-    padding-top: 60px;
-  }
-  
-  .modal-content {
-    background-color: #c28061;
-    margin: 5% auto;
-    padding: 20px;
-    border: 3px solid #7f2c06;
-    border-radius: 10px;
-    width: 80%;
-    max-width: 400px;
-    font-family: "微軟正黑體";
-    font-weight: bold;
-  }
+  display: none; 
+  position: fixed; 
+  z-index: 999; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgba(0, 0, 0, 0.4); 
+  padding-top: 60px;
+}
 
-  .modal-content h2{
-    color: #42563b;
-  }
+.modal-content {
+  background-color: #c28061;
+  margin: 5% auto;
+  padding: 20px;
+  border: 3px solid #7f2c06;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 400px;
+  font-family: "微軟正黑體";
+  font-weight: bold;
+}
 
-  /* 登入按鈕樣式 */
+.modal-content h2 {
+  color: #42563b;
+}
+
+.modal-content input {
+  width: 90%;
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid #ae4516;
+  border-radius: 5px;
+}
+
+/* 共用按鈕樣式 */
 .modal-content button {
   background-color: #42563b; 
   color: white; 
   font-family: "微軟正黑體"; 
   font-size: 16px; 
   font-weight: bold; 
-  padding: 10px 20px; /* 按鈕內邊距 */
-  margin-top: 20px; /* 與上方元素的距離 */
+  padding: 10px 20px;
+  margin-top: 20px;
   border: 1px solid #ae4516;
-  border-radius: 5px; /* 圓角 */
-  cursor: pointer; /* 滑鼠指標效果 */
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-/* 按鈕的懸停效果 */
 .modal-content button:hover {
-  background-color: #772f0e; /* 懸停時的背景顏色 */
+  background-color: #772f0e;
 }
 
-  
-  .close {
-    color: #ae4516;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
-  
-  .close:hover,
-  .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  }
+.close {
+  color: #ae4516;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
 
-  .login-form {
-    color: #42563b;
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
 
-  }
+.login-form {
+  color: #42563b;
+}

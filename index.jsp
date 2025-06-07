@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
 <html lang="zh-Hant">
@@ -46,7 +47,7 @@
             </div>
          </nav>
          
-          <h1 class="store-name"><a href="index .html">胖呆雜貨店</a></h1>
+          <h1 class="store-name"><a href="index.jsp">胖呆雜貨店</a></h1>
           <div class="nav-right">
           
             <!-- header 裡的會員中心區塊改為下拉選單 -->
