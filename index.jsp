@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<%@ page import="java.sql.*" %>
 
 <!DOCTYPE html>
 <html lang="zh-Hant">
@@ -26,9 +27,10 @@
   <a id="popup-ad-link" href="#">
     <div class="popup-img-wrapper">
       <img id="popup-ad-img" src="" alt="廣告圖片">
-      <div class="popup-ad-text">🎉全館免運 + 滿千折百！🎉</div>
+      <div class="popup-ad-text">🎉 全館免運 + 滿千折百!🎉</div>
     </div>
   </a>
+  <button id="member-discount-btn" onclick="openBenefitModal()">➡️ 點擊查看會員專屬優惠 ⬅️</button>
 </div>
 </div>
     <header>
@@ -218,6 +220,21 @@
           </div>
         </section>
 
+        
+        <!-- 🎁 會員優惠彈窗 -->
+<div id="benefit-modal" class="modal" style="display: none;">
+  <div class="modal-content" style="max-width: 500px;">
+    <span class="close" onclick="closeBenefitModal()" style="float: right; font-size: 24px; cursor: pointer;">&times;</span>
+    <h2 style="text-align: center;">🎉 會員專屬優惠 🎉</h2>
+    <ul style="line-height: 2; font-size: 1.1em;">
+      <li>📦 新會員註冊即贈 100 元購物金！</li>
+      <li>🛍️ 每月 15 號會員日，享 9 折優惠！</li>
+      <li>🎈 累積消費滿 $3000 再送限定懷舊小禮！</li>
+      <li>🎁 不定期驚喜優惠券寄送至信箱</li>
+    </ul>
+  </div>
+</div>
+
         <footer>
           <div class="footer-container">
             <div class="footer-item">
@@ -284,6 +301,17 @@
   document.getElementById("popup-ad-img").src = randomAd.img;
   document.getElementById("popup-ad-link").href = randomAd.link;
   document.getElementById("ad-description").textContent = randomAd.desc;
+
+  
+ function openBenefitModal() {
+  document.getElementById("benefit-modal").style.display = "block";
+  document.getElementById("ad-overlay").style.display = "none"; // 🧠 同時關閉廣告
+}
+
+ function closeBenefitModal() {
+  document.getElementById("benefit-modal").style.display = "none";
+}
+
 
   function closeAd() {
     document.getElementById("ad-overlay").style.display = "none";

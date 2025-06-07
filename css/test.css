@@ -667,7 +667,7 @@ backdrop-filter: blur(20px);
   bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: rgba(251, 30, 30, 0.544);
+  background-color: rgba(251, 30, 30, 0.7);
   padding: 5px 20px;
   border-radius: 8px;
   font-size: 1rem;
@@ -675,4 +675,19 @@ backdrop-filter: blur(20px);
   font-weight: bold;
   font-family: "微軟正黑體";
   white-space: nowrap;
+}
+
+#member-discount-btn {
+  margin-top: 10px;
+  padding: 5px 16px;
+  font-size: 16px;
+  background-color: rgba(49, 69, 149, 0.7);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#member-discount-btn:hover {
+  background-color: #241383;
 }
