@@ -1,46 +1,3 @@
-<%@ page contentType="text/html; charset=UTF-8" language="java" %>
-<%@ page import="java.sql.*" %>
-
-<%
-  // 是否已同意 Cookie
-  boolean showCookieBanner = true;
-  Cookie[] cookies = request.getCookies();
-  if (cookies != null) {
-      for (Cookie c : cookies) {
-          if ("cookieConsent".equals(c.getName()) && "yes".equals(c.getValue())) {
-              showCookieBanner = false;
-              break;
-          }
-      }
-  }
-
-  // 記錄訪客資料進資料庫
-  try {
-      Class.forName("com.mysql.cj.jdbc.Driver");
-      Connection conn = DriverManager.getConnection(
-          "jdbc:mysql://localhost:3306/pdzhd?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Taipei",
-          "root", "1234");
-
-      String ip = request.getRemoteAddr();
-      String ua = request.getHeader("User-Agent");
-
-      PreparedStatement insertStmt = conn.prepareStatement(
-          "INSERT INTO visit_log (ip_address, visit_date, user_agent) VALUES (?, CURDATE(), ?)");
-      insertStmt.setString(1, ip);
-      insertStmt.setString(2, ua);
-      insertStmt.executeUpdate();
-
-      PreparedStatement countStmt = conn.prepareStatement("SELECT COUNT(*) FROM visit_log");
-      ResultSet rs = countStmt.executeQuery();
-      if (rs.next()) {
-          application.setAttribute("visitCount", rs.getInt(1));
-      }
-
-      conn.close();
-  } catch (Exception e) {
-      e.printStackTrace();
-  }
-%>
 
 <!DOCTYPE html>
 <html lang="zh-Hant">
@@ -62,6 +19,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=swap" rel="stylesheet">
 </head>
 <body>
+
   <div id="ad-overlay" class="overlay">
   <div class="popup-ad">
   <span class="close-btn" onclick="closeAd()">&times;</span>
@@ -90,7 +48,7 @@
             </div>
          </nav>
          
-          <h1 class="store-name"><a href="index.jsp">胖呆雜貨店</a></h1>
+          <h1 class="store-name"><a href="index .html">胖呆雜貨店</a></h1>
           <div class="nav-right">
           
             <!-- header 裡的會員中心區塊改為下拉選單 -->
@@ -261,24 +219,19 @@
           </div>
         </section>
 
-        
-                <!-- 🎁 會員優惠彈窗 -->
-        <div id="benefit-modal" class="modal" style="display: none;">
-          <div class="modal-content" style="max-width: 500px;">
-            <span class="close" onclick="closeBenefitModal()" style="float: right; font-size: 24px; cursor: pointer;">&times;</span>
-            <h2 style="text-align: center;">🎉 會員專屬優惠 🎉</h2>
-            <ul style="line-height: 2; font-size: 1.1em;">
-              <li>📦 新會員註冊即贈 100 元購物金！</li>
-              <li>🛍️ 每月 15 號會員日，享 9 折優惠！</li>
-              <li>🎈 累積消費滿 $3000 再送限定懷舊小禮！</li>
-              <li>🎁 不定期驚喜優惠券寄送至信箱</li>
-            </ul>
-          </div>
-        </div>
-
-        <div style="text-align:center; margin-top: 30px; font-weight:bold;">
-          👣 累積訪客人數：<%= application.getAttribute("visitCount") %> 位
-        </div>
+        <!-- 🎁 會員優惠彈窗 -->
+<div id="benefit-modal" class="modal" style="display: none;">
+  <div class="modal-content" style="max-width: 500px;">
+    <span class="close" onclick="closeBenefitModal()" style="float: right; font-size: 24px; cursor: pointer;">&times;</span>
+    <h2 style="text-align: center;">🎉 會員專屬優惠 🎉</h2>
+    <ul style="line-height: 2; font-size: 1.1em;">
+      <li>📦 新會員註冊即贈 100 元購物金！</li>
+      <li>🛍️ 每月 15 號會員日，享 9 折優惠！</li>
+      <li>🎈 累積消費滿 $3000 再送限定懷舊小禮！</li>
+      <li>🎁 不定期驚喜優惠券寄送至信箱</li>
+    </ul>
+  </div>
+</div>
 
 
         <footer>
@@ -312,171 +265,156 @@
   </script>
 
 
-  <script>
-    const ads = [
-      { img: "image/food/chocolate.png", link: "food.html?id=food1" },
-      { img: "image/food/lipstick.png", link: "food.html?id=food1" },
-      { img: "image/food/AirplaneBiscuits.png", link: "food.html?id=food1" },
-      { img: "image/food/GummyCandy.png", link: "food.html?id=food1" },
-      { img: "image/food/HawthornGrain.png", link: "food.html?id=food1" },
-      { img: "image/food/SpiralCookies.png", link: "food.html?id=food1" },
+<script>
+  const ads = [
+    { img: "image/food/chocolate.png", link: "food.html?id=food1" },
+    { img: "image/food/lipstick.png", link: "food.html?id=food1" },
+    { img: "image/food/AirplaneBiscuits.png", link: "food.html?id=food1" },
+    { img: "image/food/GummyCandy.png", link: "food.html?id=food1" },
+    { img: "image/food/HawthornGrain.png", link: "food.html?id=food1" },
+    { img: "image/food/SpiralCookies.png", link: "food.html?id=food1" },
 
-      { img: "image/drinks/MarbleSoda.PNG", link: "drinks.html?id=drinks2" },
-      { img: "image/drinks/AsparagusJuice.png", link: "drinks.html?id=drinks2" },
-      { img: "image/drinks/IceCreamSoda.png", link: "drinks.html?id=drinks2" },
-      { img: "image/drinks/QOO.png", link: "drinks.html?id=drinks2" },
-      { img: "image/drinks/soymilk.png", link: "drinks.html?id=drinks2" },
-      { img: "image/drinks/WhiteGourdTea.png", link: "drinks.html?id=drinks2" },
+    { img: "image/drinks/MarbleSoda.PNG", link: "drinks.html?id=drinks2" },
+    { img: "image/drinks/AsparagusJuice.png", link: "drinks.html?id=drinks2" },
+    { img: "image/drinks/IceCreamSoda.png", link: "drinks.html?id=drinks2" },
+    { img: "image/drinks/QOO.png", link: "drinks.html?id=drinks2" },
+    { img: "image/drinks/soymilk.png", link: "drinks.html?id=drinks2" },
+    { img: "image/drinks/WhiteGourdTea.png", link: "drinks.html?id=drinks2" },
 
-      { img: "image/supplies/FootMassager.PNG", link: "supplies.html?id=supplies3" },
-      { img: "image/supplies/FeatherDust.PNG", link: "supplies.html?id=supplies3" },
-      { img: "image/supplies/FloridaWater.PNG", link: "supplies.html?id=supplies3" },
-      { img: "image/supplies/RootOfMoghania.PNG", link: "supplies.html?id=supplies3" },
-      { img: "image/supplies/scratch.PNG", link: "supplies.html?id=supplies3" },
-      { img: "image/supplies/SxrapingBoard.PNG", link: "supplies.html?id=supplies3" },
+    { img: "image/supplies/FootMassager.PNG", link: "supplies.html?id=supplies3" },
+    { img: "image/supplies/FeatherDust.PNG", link: "supplies.html?id=supplies3" },
+    { img: "image/supplies/FloridaWater.PNG", link: "supplies.html?id=supplies3" },
+    { img: "image/supplies/RootOfMoghania.PNG", link: "supplies.html?id=supplies3" },
+    { img: "image/supplies/scratch.PNG", link: "supplies.html?id=supplies3" },
+    { img: "image/supplies/SxrapingBoard.PNG", link: "supplies.html?id=supplies3" },
 
-      { img: "image/toys/SpaceBalloon.PNG", link: "toys.html?id=toys4" },
-      { img: "image/toys/PokingLottery.PNG", link: "toys.html?id=toys4" },
-      { img: "image/toys/kendama.PNG", link: "toys.html?id=toys4" },
-      { img: "image/toys/hopter.PNG", link: "toys.html?id=toys4" },
-      { img: "image/toys/draw.PNG", link: "toys.html?id=toys4" },
-      { img: "image/toys/FishingGame.PNG", link: "toys.html?id=toys4" }
-    ];
+    { img: "image/toys/SpaceBalloon.PNG", link: "toys.html?id=toys4" },
+    { img: "image/toys/PokingLottery.PNG", link: "toys.html?id=toys4" },
+    { img: "image/toys/kendama.PNG", link: "toys.html?id=toys4" },
+    { img: "image/toys/hopter.PNG", link: "toys.html?id=toys4" },
+    { img: "image/toys/draw.PNG", link: "toys.html?id=toys4" },
+    { img: "image/toys/FishingGame.PNG", link: "toys.html?id=toys4" }
+  ];
 
-    const randomAd = ads[Math.floor(Math.random() * ads.length)];
-    document.getElementById("popup-ad-img").src = randomAd.img;
-    document.getElementById("popup-ad-link").href = randomAd.link;
-    document.getElementById("ad-description").textContent = randomAd.desc;
+  const randomAd = ads[Math.floor(Math.random() * ads.length)];
+  document.getElementById("popup-ad-img").src = randomAd.img;
+  document.getElementById("popup-ad-link").href = randomAd.link;
+  document.getElementById("ad-description").textContent = randomAd.desc;
 
-    
-  function openBenefitModal() {
-    document.getElementById("benefit-modal").style.display = "block";
-    document.getElementById("ad-overlay").style.display = "none"; // 🧠 同時關閉廣告
+ function openBenefitModal() {
+  document.getElementById("benefit-modal").style.display = "block";
+  document.getElementById("ad-overlay").style.display = "none"; // 🧠 同時關閉廣告
+}
+
+ function closeBenefitModal() {
+  document.getElementById("benefit-modal").style.display = "none";
+}
+
+  function closeAd() {
+    document.getElementById("ad-overlay").style.display = "none";
+  }
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  // 🔄 會員選單控制
+  function toggleMemberMenu() {
+    document.getElementById("member-menu").classList.toggle("show");
+  }
+  window.toggleMemberMenu = toggleMemberMenu;
+
+  function openRegisterWindow() {
+    document.getElementById("register-modal").style.display = "block";
+  }
+  window.openRegisterWindow = openRegisterWindow;
+
+  function closeRegisterWindow() {
+    document.getElementById("register-modal").style.display = "none";
+  }
+  window.closeRegisterWindow = closeRegisterWindow;
+
+  function openLoginWindow() {
+    document.getElementById("login-modal").style.display = "block";
+  }
+  window.openLoginWindow = openLoginWindow;
+
+  function closeLoginWindow() {
+    document.getElementById("login-modal").style.display = "none";
+  }
+  window.closeLoginWindow = closeLoginWindow;
+
+
+  // ✅ 註冊事件綁定
+  const registerForm = document.getElementById("register-form");
+  if (registerForm) {
+    registerForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const formData = new FormData();
+      formData.append("action", "register");
+      formData.append("username", document.getElementById("register-username").value);
+      formData.append("password", document.getElementById("register-password").value);
+      formData.append("name", document.getElementById("name").value);
+      formData.append("phone", document.getElementById("phone").value);
+      formData.append("email", document.getElementById("email").value);
+
+      fetch("user.jsp", {
+        method: "POST",
+        body: formData
+      })
+        .then(res => res.text())
+        .then(result => {
+          if (result.includes("register_success")) {
+            document.getElementById("register-success").style.display = "block";
+            setTimeout(() => {
+              closeRegisterWindow();
+              registerForm.reset();
+              document.getElementById("register-success").style.display = "none";
+            }, 2000);
+          } else {
+            alert("註冊失敗：" + result);
+          }
+        });
+    });
   }
 
-  function closeBenefitModal() {
-    document.getElementById("benefit-modal").style.display = "none";
+  // ✅ 登入事件綁定
+  const loginForm = document.getElementById("login-form");
+  if (loginForm) {
+    loginForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const formData = new FormData();
+      formData.append("action", "login");
+      formData.append("username", document.getElementById("login-username").value);
+      formData.append("password", document.getElementById("login-password").value);
+
+      fetch("user.jsp", {
+        method: "POST",
+        body: formData
+      })
+        .then(res => res.text())
+        .then(result => {
+          const errorMessage = document.getElementById("error-message");
+          if (result.includes("login_success")) {
+            alert("登入成功！");
+            closeLoginWindow();
+            loginForm.reset();
+            errorMessage.style.display = "none";
+
+            const memberButton = document.getElementById("member-button");
+            if (memberButton) {
+              const name = result.split("|")[1] || "會員";
+              memberButton.innerText = name + "，您好 ▼";
+            }
+          } else {
+            if (errorMessage) {
+              errorMessage.textContent = "登入失敗：" + result;
+              errorMessage.style.display = "block";
+            }
+          }
+        });
+    });
   }
-
-
-    function closeAd() {
-      document.getElementById("ad-overlay").style.display = "none";
-    }
-  </script>
-
-  <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    // 🔄 會員選單控制
-    function toggleMemberMenu() {
-      document.getElementById("member-menu").classList.toggle("show");
-    }
-    window.toggleMemberMenu = toggleMemberMenu;
-
-    function openRegisterWindow() {
-      document.getElementById("register-modal").style.display = "block";
-    }
-    window.openRegisterWindow = openRegisterWindow;
-
-    function closeRegisterWindow() {
-      document.getElementById("register-modal").style.display = "none";
-    }
-    window.closeRegisterWindow = closeRegisterWindow;
-
-    function openLoginWindow() {
-      document.getElementById("login-modal").style.display = "block";
-    }
-    window.openLoginWindow = openLoginWindow;
-
-    function closeLoginWindow() {
-      document.getElementById("login-modal").style.display = "none";
-    }
-    window.closeLoginWindow = closeLoginWindow;
-
-    // ✅ 註冊事件綁定
-    const registerForm = document.getElementById("register-form");
-    if (registerForm) {
-      registerForm.addEventListener("submit", function (e) {
-        e.preventDefault();
-        const formData = new FormData();
-        formData.append("action", "register");
-        formData.append("username", document.getElementById("register-username").value);
-        formData.append("password", document.getElementById("register-password").value);
-        formData.append("name", document.getElementById("name").value);
-        formData.append("phone", document.getElementById("phone").value);
-        formData.append("email", document.getElementById("email").value);
-
-        fetch("user.jsp", {
-          method: "POST",
-          body: formData
-        })
-          .then(res => res.text())
-          .then(result => {
-            if (result.includes("register_success")) {
-              document.getElementById("register-success").style.display = "block";
-              setTimeout(() => {
-                closeRegisterWindow();
-                registerForm.reset();
-                document.getElementById("register-success").style.display = "none";
-              }, 2000);
-            } else {
-              alert("註冊失敗：" + result);
-            }
-          });
-      });
-    }
-
-    // ✅ 登入事件綁定
-    const loginForm = document.getElementById("login-form");
-    if (loginForm) {
-      loginForm.addEventListener("submit", function (e) {
-        e.preventDefault();
-        const formData = new FormData();
-        formData.append("action", "login");
-        formData.append("username", document.getElementById("login-username").value);
-        formData.append("password", document.getElementById("login-password").value);
-
-        fetch("user.jsp", {
-          method: "POST",
-          body: formData
-        })
-          .then(res => res.text())
-          .then(result => {
-            const errorMessage = document.getElementById("error-message");
-            if (result.includes("login_success")) {
-              alert("登入成功！");
-              closeLoginWindow();
-              loginForm.reset();
-              errorMessage.style.display = "none";
-
-              const memberButton = document.getElementById("member-button");
-              if (memberButton) {
-                const name = result.split("|")[1] || "會員";
-                memberButton.innerText = name + "，您好 ▼";
-              }
-            } else {
-              if (errorMessage) {
-                errorMessage.textContent = "登入失敗：" + result;
-                errorMessage.style.display = "block";
-              }
-            }
-          });
-      });
-    }
-  });
-  </script>
-
-  <% if (showCookieBanner) { %>
-  <div id="cookie-banner" style="position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.8); color: white; padding: 10px 20px; text-align: center; z-index: 999;">
-    本網站使用 Cookie 提升使用體驗。繼續使用即表示您同意使用 Cookie。
-    <button onclick="acceptCookie()" style="margin-left: 10px; background: #a54427; color: white; padding: 6px 12px; border: none; border-radius: 4px;">我知道了</button>
-  </div>
-  <script>
-    function acceptCookie() {
-      document.getElementById("cookie-banner").style.display = "none";
-      document.cookie = "cookieConsent=yes; path=/; max-age=" + (60 * 60 * 24 * 365); // 一年
-    }
-  </script>
-  <% } %>
-
+});
+</script>
 </body>
 </html>
