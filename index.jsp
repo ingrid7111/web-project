@@ -1,6 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ page import="java.sql.*" %>
-
 <%
   // 是否已同意 Cookie
   boolean showCookieBanner = true;
@@ -40,6 +39,9 @@
   } catch (Exception e) {
       e.printStackTrace();
   }
+
+  // 取得會員名稱，只定義一次避免重複變數錯誤
+  String user = (String) session.getAttribute("user");
 %>
 
 <!DOCTYPE html>
@@ -60,6 +62,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=swap" rel="stylesheet">
+  <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 </head>
 <body>
   <div id="ad-overlay" class="overlay">
@@ -93,39 +96,54 @@
           <h1 class="store-name"><a href="index.jsp">胖呆雜貨店</a></h1>
           <div class="nav-right">
           
-            <!-- header 裡的會員中心區塊改為下拉選單 -->
-<div class="dropdown">
-  <a href="#" class="dropdown-button" onclick="toggleMemberMenu()" id="member-button">會員中心 ▼</a>
-  <div id="member-menu" class="dropdown-content">
-    <a href="#" onclick="openLoginWindow()">會員登入</a>
-    <a href="#" onclick="openRegisterWindow()">新用戶註冊</a>
-  </div>
-</div>
+          
+        <!-- header 裡的會員中心區塊改為下拉選單 -->
+        <div class="dropdown">
+          <a href="#" class="dropdown-button" onclick="toggleMemberMenu()" id="member-button">
+            <%= user != null ? user + "，您好 ▼" : "會員中心 ▼" %>
+          </a>
+          <div id="member-menu" class="dropdown-content">
+            <%
+              if (user == null) {
+            %>
+              <a href="#" onclick="openLoginWindow()">會員登入</a>
+              <a href="#" onclick="openRegisterWindow()">新用戶註冊</a>
+            <%
+              } else {
+            %>
+              <a href="member_center.jsp">會員中心</a>
+              <a href="logout.jsp">登出</a>
+            <%
+              }
+            %>
+          </div>
+        </div>
 
 
-         <!-- 🔽 新用戶註冊視窗 -->
-<div id="register-modal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeRegisterWindow()">&times;</span>
-    <h2>新用戶註冊</h2>
-    <form id="register-form">
-      <label for="name">姓名：</label>
-      <input type="text" id="name" name="name" required><br>
-      <label for="phone">電話：</label>
-      <input type="tel" id="phone" name="phone" required><br>
-      <label for="email">Email：</label>
-      <input type="email" id="email" name="email" required><br>
-      <label for="register-username">帳號：</label>
-      <input type="text" id="register-username" name="username" required><br>
 
-      <label for="register-password">密碼：</label>
-      <input type="password" id="register-password" name="password" required><br>
+            <!-- 🔽 新用戶註冊視窗 -->
+            <div id="register-modal" class="modal">
+              <div class="modal-content">
+                <span class="close" onclick="closeRegisterWindow()">&times;</span>
+                <h2>新用戶註冊</h2>
+                <form id="register-form" action="register.jsp" method="post">
+                  <label for="name">姓名：</label>
+                  <input type="text" id="name" name="name" required><br>
+                  <label for="phone">電話：</label>
+                  <input type="tel" id="phone" name="phone" required><br>
+                  <label for="email">Email：</label>
+                  <input type="email" id="email" name="email" required><br>
+                  <label for="register-username">帳號：</label>
+                  <input type="text" id="register-username" name="username" required><br>
 
-      <button type="submit">註冊</button>
-    </form>
-    <p id="register-success" style="color: green; display: none;">註冊成功，歡迎選購！</p>
-  </div>
-</div>
+                  <label for="register-password">密碼：</label>
+                  <input type="password" id="register-password" name="password" required><br>
+
+                  <button type="submit">註冊</button>
+                </form>
+                <p id="register-success" style="color: green; display: none;">註冊成功，歡迎選購！</p>
+              </div>
+            </div>
 
 
 
@@ -134,7 +152,7 @@
               <div class="modal-content">
                 <span class="close" onclick="closeLoginWindow()">&times;</span>
                 <h2>會員登入</h2>
-                <form id="login-form">
+                <form id="login-form" action="login.jsp" method="post">
                   <label for="username">帳號:</label>
                   <input type="text" id="login-username" name="username" required><br>
                   <label for="password">密碼:</label>
@@ -261,7 +279,6 @@
           </div>
         </section>
 
-        
                 <!-- 🎁 會員優惠彈窗 -->
         <div id="benefit-modal" class="modal" style="display: none;">
           <div class="modal-content" style="max-width: 500px;">
@@ -346,7 +363,7 @@
     const randomAd = ads[Math.floor(Math.random() * ads.length)];
     document.getElementById("popup-ad-img").src = randomAd.img;
     document.getElementById("popup-ad-link").href = randomAd.link;
-    document.getElementById("ad-description").textContent = randomAd.desc;
+    /*document.getElementById("ad-description").textContent = randomAd.desc;*/
 
     
   function openBenefitModal() {
@@ -364,66 +381,87 @@
     }
   </script>
 
+        <script>
+  function openRegisterWindow() {
+    const modal = document.getElementById("register-modal");
+    if (modal) {
+      modal.style.display = "block";
+    }
+  }
+
+  function closeRegisterWindow() {
+    const modal = document.getElementById("register-modal");
+    if (modal) {
+      modal.style.display = "none";
+    }
+  }
+
+  // 讓 inline onclick 能呼叫
+  window.openRegisterWindow = openRegisterWindow;
+  window.closeRegisterWindow = closeRegisterWindow;
+</script>
+
   <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    // 🔄 會員選單控制
-    function toggleMemberMenu() {
-      document.getElementById("member-menu").classList.toggle("show");
-    }
-    window.toggleMemberMenu = toggleMemberMenu;
+    document.addEventListener("DOMContentLoaded", function () {
+      // 🔄 會員選單控制
+      function toggleMemberMenu() {
+        document.getElementById("member-menu").classList.toggle("show");
+      }
+      window.toggleMemberMenu = toggleMemberMenu;
 
-    function openRegisterWindow() {
-      document.getElementById("register-modal").style.display = "block";
-    }
-    window.openRegisterWindow = openRegisterWindow;
+      function openRegisterWindow() {
+        document.getElementById("register-modal").style.display = "block";
+      }
+      window.openRegisterWindow = openRegisterWindow;
 
-    function closeRegisterWindow() {
-      document.getElementById("register-modal").style.display = "none";
-    }
-    window.closeRegisterWindow = closeRegisterWindow;
+      function closeRegisterWindow() {
+        document.getElementById("register-modal").style.display = "none";
+      }
+      window.closeRegisterWindow = closeRegisterWindow;
 
-    function openLoginWindow() {
-      document.getElementById("login-modal").style.display = "block";
-    }
-    window.openLoginWindow = openLoginWindow;
+      function openLoginWindow() {
+        document.getElementById("login-modal").style.display = "block";
+      }
+      window.openLoginWindow = openLoginWindow;
 
-    function closeLoginWindow() {
-      document.getElementById("login-modal").style.display = "none";
-    }
-    window.closeLoginWindow = closeLoginWindow;
+      function closeLoginWindow() {
+        document.getElementById("login-modal").style.display = "none";
+      }
+      window.closeLoginWindow = closeLoginWindow;
 
-    // ✅ 註冊事件綁定
-    const registerForm = document.getElementById("register-form");
-    if (registerForm) {
-      registerForm.addEventListener("submit", function (e) {
-        e.preventDefault();
-        const formData = new FormData();
-        formData.append("action", "register");
-        formData.append("username", document.getElementById("register-username").value);
-        formData.append("password", document.getElementById("register-password").value);
-        formData.append("name", document.getElementById("name").value);
-        formData.append("phone", document.getElementById("phone").value);
-        formData.append("email", document.getElementById("email").value);
+      // ✅ 註冊事件綁定
+      const registerForm = document.getElementById("register-form");
+      if (registerForm) {
+        registerForm.addEventListener("submit", function (e) {
+          e.preventDefault();
 
-        fetch("user.jsp", {
-          method: "POST",
-          body: formData
-        })
-          .then(res => res.text())
-          .then(result => {
-            if (result.includes("register_success")) {
-              document.getElementById("register-success").style.display = "block";
-              setTimeout(() => {
-                closeRegisterWindow();
-                registerForm.reset();
-                document.getElementById("register-success").style.display = "none";
-              }, 2000);
-            } else {
-              alert("註冊失敗：" + result);
-            }
-          });
-      });
-    }
+          const formData = new FormData(registerForm);
+
+          fetch("register.jsp", {
+            method: "POST",
+            body: formData,
+            credentials: "include"
+          })
+            .then(res => res.text())
+            .then(result => {
+              if (result.includes("註冊成功")) {
+                alert("註冊成功！即將跳轉至登入頁...");
+                closeRegisterWindow();  // 關閉註冊視窗
+                registerForm.reset();   // 清空表單
+
+                setTimeout(() => {
+                  window.location.href = "index.jsp";  // 或改為 login.jsp
+                }, 1500);
+              } else {
+                alert("註冊失敗：" + result);
+              }
+            })
+            .catch(error => {
+              alert("發生錯誤：" + error);
+            });
+        });
+
+  }
 
     // ✅ 登入事件綁定
     const loginForm = document.getElementById("login-form");
@@ -435,31 +473,26 @@
         formData.append("username", document.getElementById("login-username").value);
         formData.append("password", document.getElementById("login-password").value);
 
-        fetch("user.jsp", {
+        fetch("login.jsp", {
           method: "POST",
-          body: formData
+          body: formData,
+          credentials: "include"  // ⬅ 加這行保留 session cookie！
         })
-          .then(res => res.text())
-          .then(result => {
-            const errorMessage = document.getElementById("error-message");
-            if (result.includes("login_success")) {
-              alert("登入成功！");
-              closeLoginWindow();
-              loginForm.reset();
-              errorMessage.style.display = "none";
-
-              const memberButton = document.getElementById("member-button");
-              if (memberButton) {
-                const name = result.split("|")[1] || "會員";
-                memberButton.innerText = name + "，您好 ▼";
-              }
-            } else {
-              if (errorMessage) {
-                errorMessage.textContent = "登入失敗：" + result;
-                errorMessage.style.display = "block";
-              }
+        .then(res => res.text())
+        .then(result => {
+          const errorMessage = document.getElementById("error-message");
+          if (result.includes("login_success")) {
+            const name = result.split("|")[1] || "會員";
+            localStorage.setItem("current_user", name); // 如果你前端也需要
+            alert("登入成功！");
+            window.location.href = "member.jsp"; // ✅ 登入後跳轉到會員中心
+          } else {
+            if (errorMessage) {
+              errorMessage.textContent = result;
+              errorMessage.style.display = "block";
             }
-          });
+          }
+
       });
     }
   });
@@ -505,6 +538,22 @@
     </div>
   </div>
 </div>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var user = "<%= user != null ? user : "" %>";
+    if (user !== "") {
+      const memberBtn = document.getElementById("member-button");
+      if (memberBtn) {
+        memberBtn.textContent = user + "，您好 ▼";
+      }
+    }
+  });
+</script>
+
+
+
 
 </body>
 </html>

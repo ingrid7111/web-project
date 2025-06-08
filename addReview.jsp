@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title>新增評論</title>
-  <link rel="stylesheet" href="css/style.css"> <!-- 根據你的 CSS 路徑調整 -->
+  <link rel="stylesheet" href="css/style.css">
   <style>
     .review-wrapper {
       background-color: rgba(255, 255, 255, 0.95);
@@ -15,13 +15,11 @@
       box-shadow: 0 6px 12px rgba(0,0,0,0.2);
       font-family: "微軟正黑體", sans-serif;
     }
-
     .review-wrapper h2 {
       color: #42563b;
       margin-bottom: 20px;
       font-size: 1.8rem;
     }
-
     .review-wrapper label {
       display: block;
       margin: 10px 0 5px;
@@ -29,7 +27,6 @@
       color: #333;
       text-align: left;
     }
-
     .review-wrapper input, .review-wrapper textarea {
       width: 100%;
       padding: 10px;
@@ -39,7 +36,6 @@
       box-sizing: border-box;
       margin-bottom: 15px;
     }
-
     .review-wrapper button {
       background-color: #a54427;
       color: white;
@@ -49,11 +45,9 @@
       cursor: pointer;
       font-size: 1rem;
     }
-
     .review-wrapper button:hover {
       background-color: #42563b;
     }
-
     .result-message {
       margin-top: 15px;
       color: #ae4516;
@@ -62,7 +56,6 @@
   </style>
 </head>
 <body>
-
 <div class="review-wrapper">
   <h2>發表商品評論</h2>
   <form method="post">
@@ -100,7 +93,6 @@ if (productId != null && ratingStr != null && comment != null) {
                 "jdbc:mysql://localhost:3306/pdzhd?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Taipei",
                 "root", "1234");
 
-            // 檢查是否購買過該商品
             PreparedStatement checkStmt = conn.prepareStatement(
               "SELECT COUNT(*) FROM order_items oi JOIN orders o ON oi.order_id = o.id WHERE o.username = ? AND oi.product_id = ?");
             checkStmt.setString(1, username);
@@ -133,8 +125,6 @@ if (productId != null && ratingStr != null && comment != null) {
     }
 }
 %>
-
 </div>
-
 </body>
 </html>

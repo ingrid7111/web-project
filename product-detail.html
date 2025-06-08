@@ -14,7 +14,7 @@
     <div class="header-container">
       <h1 class="store-name"><a href="index.jsp">胖呆雜貨店</a></h1>
       <div class="nav-right">
-        <a href="member.html">會員中心 ｜</a>
+        <a href="member.jsp">會員中心 ｜</a>
         <a href="shoppingcart.html" class="cart">🛒 購物車</a>
       </div>
     </div>
@@ -22,8 +22,6 @@
 
   <main class="product-detail">
     <div class="product-content">
-      
-      <!-- ⬅️ 商品介紹區塊 -->
       <div class="product-info">
         <div class="product-image">
           <img id="detailImage" src="image/drink/1.JPG" alt="商品圖片">
@@ -53,15 +51,20 @@
         <div style="display: flex; align-items: center; margin-top: 20px;">
           <button id="add-to-cart">加入購物車</button>
           <button id="product-wishlist-btn">
-            <span id="product-heart-icon">&#9825;</span>
+            <span id="product-heart-icon">♡</span>
           </button>
         </div>
       </div>
 
-      <!-- ➡️ 評論區塊 -->
       <div class="product-review">
         <h2>商品評分與評論</h2>
         <h4>4.0 ★★★★☆ (100 條評論)</h4>
+        <select id="sortReview">
+          <option value="latest">時間：新→舊</option>
+          <option value="oldest">時間：舊→新</option>
+          <option value="highest">評分：高→低</option>
+          <option value="lowest">評分：低→高</option>
+        </select>
         <div class="product-reviews">
           <div class="reviews-list" id="reviews-list">
             <div class="review">
@@ -71,6 +74,7 @@
               <span class="review-date">2024/12/30</span>
             </div>
           </div>
+          <button id="toggle-review-form" style="margin-top: 10px;">我要寫評論</button>
           <div class="new-reviews" style="display: none;">
             <h2>新增評論</h2>
             <div class="star" id="star-rating1"></div>
@@ -79,7 +83,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </main>
 
@@ -88,15 +91,15 @@
       <div class="footer-item">
         <img src="image/photo13.jpg" height="100px" width="150px">
         <div class="text-container">
-          <p>𖥠 中原大學資管系</p>
-          <p>☼ 全日公休（食物被代言人吃完 補貨中~_~）</p>
+          <p>中原大學資管系</p>
+          <p>☀ 全日公休（食物被代言人吃完 補貨中~_~）</p>
           <p>☏ 0959277777</p>
           <p>✉ pdhjzhd@gmail.com</p>
         </div>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>@2024 胖呆懷舊雜貨店</p>
+      <p>@2024 肥呆懷舊雜貨店</p>
     </div>
   </footer>
 
@@ -107,7 +110,30 @@
     const reviewList = document.getElementById("reviews-list");
     const productId = new URLSearchParams(window.location.search).get("id");
 
-    // 驗證是否登入＋購買
+    document.getElementById("toggle-review-form").addEventListener("click", () => {
+      reviewArea.style.display = 'block';
+    });
+
+    function sortReviews(criteria) {
+      const reviewElements = Array.from(document.querySelectorAll("#reviews-list .review"));
+      reviewElements.sort((a, b) => {
+        const ratingA = a.querySelector(".review-rating").textContent.replace(/☆/g, "").length;
+        const ratingB = b.querySelector(".review-rating").textContent.replace(/☆/g, "").length;
+        const dateA = new Date(a.querySelector(".review-date").textContent);
+        const dateB = new Date(b.querySelector(".review-date").textContent);
+        switch (criteria) {
+          case "highest": return ratingB - ratingA;
+          case "lowest": return ratingA - ratingB;
+          case "latest": return dateB - dateA;
+          case "oldest": return dateA - dateB;
+        }
+      });
+      reviewElements.forEach(el => reviewList.appendChild(el));
+    }
+    document.getElementById("sortReview").addEventListener("change", (e) => {
+      sortReviews(e.target.value);
+    });
+
     fetch("checkReviewPermission.jsp?productId=" + productId)
       .then(res => res.json())
       .then(data => {
@@ -116,7 +142,7 @@
         } else if (!data.canReview) {
           reviewArea.innerHTML = '<p style="color:red;">您尚未購買此商品，無法撰寫評論。</p>';
         } else {
-          reviewArea.style.display = 'block';
+          reviewArea.style.display = 'none';
           for (let i = 1; i <= 5; i++) {
             const star = document.createElement("iconify-icon");
             star.setAttribute("icon", "material-symbols:star-outline");

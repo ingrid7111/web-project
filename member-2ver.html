@@ -1,19 +1,99 @@
-<h2>會員註冊</h2>
-<form action="register.jsp" method="post">
-  <label for="name">姓名：</label>
-  <input type="text" id="name" name="name" required><br>
 
-  <label for="phone">電話：</label>
-  <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required><br>
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>胖呆懷舊雜貨店</title>
+  <link rel="stylesheet" href="css/test.css">
+  <link rel="stylesheet" href="css/member-2ver.css">
 
-  <label for="email">Email：</label>
-  <input type="email" id="email" name="email" required><br>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
 
-  <label for="username">帳號：</label>
-  <input type="text" id="username" name="username" required><br>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap" rel="stylesheet">
 
-  <label for="password">密碼：</label>
-  <input type="password" id="password" name="password" required><br>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=swap" rel="stylesheet">
+</head>
 
-  <button type="submit">註冊</button>
-</form>
+<body>
+    <h2 id="form-title">會員註冊</h2>
+
+    <!-- 註冊表單 -->
+    <form id="register-form" action="register.jsp" method="post">
+      <label for="name">姓名：</label>
+      <input type="text" id="name" name="name" required><br>
+
+      <label for="phone">電話：</label>
+      <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required><br>
+
+      <label for="email">Email：</label>
+      <input type="email" id="email" name="email" required><br>
+
+      <label for="username">帳號：</label>
+      <input type="text" id="username" name="username" required><br>
+
+      <label for="password">密碼：</label>
+      <input type="password" id="password" name="password" required><br>
+
+      <button type="submit">註冊</button>
+    </form>
+
+    <!-- 登入表單（預設隱藏） -->
+    <form id="login-form" action="login.jsp" method="post" style="display: none;">
+      <label for="login-username">帳號：</label>
+      <input type="text" id="login-username" name="username" required><br>
+
+      <label for="login-password">密碼：</label>
+      <input type="password" id="login-password" name="password" required><br>
+
+      <button type="submit">登入</button>
+    </form>
+
+    <!-- 切換連結 -->
+    <p id="toggle-link">
+      已經有帳號了？<a href="#" onclick="toggleForm(true)">點此登入</a>
+    </p>
+
+    <script>
+      function toggleForm(toLogin) {
+        const registerForm = document.getElementById("register-form");
+        const loginForm = document.getElementById("login-form");
+        const formTitle = document.getElementById("form-title");
+        const toggleLink = document.getElementById("toggle-link");
+
+        if (toLogin) {
+          registerForm.style.display = "none";
+          loginForm.style.display = "block";
+          formTitle.textContent = "會員登入";
+          toggleLink.innerHTML = '還沒有帳號？<a href="#" onclick="toggleForm(false)">點此註冊</a>';
+        } else {
+          registerForm.style.display = "block";
+          loginForm.style.display = "none";
+          formTitle.textContent = "會員註冊";
+          toggleLink.innerHTML = '已經有帳號了？<a href="#" onclick="toggleForm(true)">點此登入</a>';
+        }
+      }
+    </script>
+    <footer>
+          <div class="footer-container">
+            <div class="footer-item">
+              <img src="image/photo13.jpg" height="100px" width="150px">
+              <div class="text-container">
+                <p>𖥠 中原大學資管系</p>
+                <p>☼ 全日公休（食物被代言人吃完 補貨中~_~）</p>
+                <p>☏ 0959277777(我就愛吃吃吃吃吃)</p>
+                <p>✉ pdhjzhd@gmail.com</p>
+              </div>
+            </div>
+          </div>
+          <div class="footer-bottom">
+            <p>@2024 胖呆懷舊雜貨店</p>
+          </div>
+        </footer>
+
+</body>
+</html>
