@@ -475,8 +475,36 @@
       document.getElementById("cookie-banner").style.display = "none";
       document.cookie = "cookieConsent=yes; path=/; max-age=" + (60 * 60 * 24 * 365); // 一年
     }
+
+        // 顯示彈窗條件：沒有設定 privacyConsent cookie
+    window.addEventListener("load", function () {
+      if (!document.cookie.includes("privacyConsent=true")) {
+        document.getElementById("privacy-modal").style.display = "block";
+      }
+    });
+
+    function acceptPrivacy() {
+      document.cookie = "privacyConsent=true; path=/; max-age=" + 60 * 60 * 24 * 365; // 一年有效
+      document.getElementById("privacy-modal").style.display = "none";
+    }
+
+    function declinePrivacy() {
+      window.location.href = "privacy.html"; // 或顯示提示畫面
+    }
+
   </script>
   <% } %>
+  
+  <div id="privacy-modal" class="modal" style="display: none;">
+  <div class="modal-content" style="max-width: 600px;">
+    <h2>🔒 個人資料保護聲明</h2>
+    <p>我們會蒐集 Cookie 與您輸入的個人資料，用於提供更好的瀏覽與購物體驗，詳情請見 <a href="privacy.html" target="_blank">個資政策</a>。</p>
+    <div style="text-align: right; margin-top: 20px;">
+      <button onclick="acceptPrivacy()" style="margin-right: 10px;">我同意</button>
+      <button onclick="declinePrivacy()">我不同意</button>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
